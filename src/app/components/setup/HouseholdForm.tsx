@@ -13,6 +13,7 @@ export default function HouseholdForm({ onComplete }: { onComplete: (id: string)
     cooking_time: 'medium',
     meals_per_day: 3,
     household_size: 2,
+    plan_days: 7
   })
   const [loading, setLoading] = useState(false)
 
@@ -100,6 +101,28 @@ export default function HouseholdForm({ onComplete }: { onComplete: (id: string)
           </div>
         </div>
       </div>
+
+      <div>
+          <label className="block text-xs font-medium text-slate-500 mb-2">
+            Days to plan for
+          </label>
+          <div className="flex gap-2">
+            {[3, 5, 7].map(n => (
+              <button
+                key={n}
+                type="button"
+                onClick={() => setForm(f => ({ ...f, plan_days: n }))}
+                className={`flex-1 py-2 rounded-lg text-sm border transition-colors ${
+                  form.plan_days === n
+                    ? 'bg-slate-800 text-white border-slate-800'
+                    : 'bg-white text-slate-600 border-slate-200 hover:border-slate-400'
+                }`}
+              >
+                {n} days
+              </button>
+            ))}
+          </div>
+        </div>
 
       <button
         type="submit"
