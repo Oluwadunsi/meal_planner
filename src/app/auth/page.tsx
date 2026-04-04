@@ -21,6 +21,7 @@ export default function AuthPage() {
         const { error } = await supabase.auth.signUp({ email, password })
         if (error) throw error
         alert('Check your email for confirmation link')
+        router.push('/setup')
       } else {
         const { error } = await supabase.auth.signInWithPassword({ email, password })
         if (error) throw error
